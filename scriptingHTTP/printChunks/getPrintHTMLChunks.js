@@ -1,6 +1,6 @@
 var https = require('https');   
 
-function getAndPrintHTML() {
+function getAndPrintHTMLChunks () {
 
   var requestOptions = {
     host: 'sytantris.github.io',
@@ -14,21 +14,18 @@ function getAndPrintHTML() {
     // set encoding of received data to UTF-8
     response.setEncoding('utf8');
 
-    var responseMSG = "";
-
     // the callback is invoked when a `data` chunk is received
     response.on('data', function (data) {
-      responseMSG += data + "\n";
+      console.log(data);
     });
 
     // the callback is invoked when all of the data has been received
     // (the `end` of the stream)
     response.on('end', function() {
       console.log('Response stream complete.');
-      console.log(responseMSG);
     });
   });
 
 }
 
-getAndPrintHTML();
+getAndPrintHTMLChunks();
